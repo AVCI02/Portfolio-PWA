@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Offline - Osama Alzoubani Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <meta name="theme-color" content="#0a0a0a">
+    <style>
+        .offline-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .offline-icon {
+            font-size: 4em;
+            margin-bottom: 20px;
+            color: #00ffcc;
+            animation: pulse 2s infinite;
+        }
+        
+        .offline-title {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #00ffcc, #0099ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .offline-message {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+            color: #e0e0e0;
+            max-width: 600px;
+        }
+        
+        .retry-button {
+            background: linear-gradient(45deg, #00ffcc, #0099ff);
+            color: #0a0a0a;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.1em;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .retry-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 255, 204, 0.3);
+        }
+        
+        .offline-features {
+            margin-top: 40px;
+            max-width: 500px;
+        }
+        
+        .offline-features h3 {
+            color: #00ffcc;
+            margin-bottom: 15px;
+        }
+        
+        .offline-features ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .offline-features li {
+            color: #e0e0e0;
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+        }
+        
+        .offline-features li::before {
+            content: "⚡";
+            position: absolute;
+            left: 0;
+            color: #00ffcc;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+    </style>
+</head>
+<body>
+    <div class="offline-container">
+        <div class="offline-icon">🔌</div>
+        <h1 class="offline-title">You're Offline</h1>
+        <p class="offline-message">
+            It looks like you're not connected to the internet. Don't worry - this portfolio is designed to work offline! 
+            Some features may be limited, but you can still explore the cached content.
+        </p>
+        
+        <button class="retry-button" onclick="window.location.reload()">
+            Try Again
+        </button>
+        
+        <div class="offline-features">
+            <h3>Available Offline:</h3>
+            <ul>
+                <li>View portfolio content</li>
+                <li>Browse projects and skills</li>
+                <li>Access contact information</li>
+                <li>Interactive animations</li>
+            </ul>
+        </div>
+    </div>
+    
+    <script>
+        // Check if online and redirect to main page
+        function checkConnection() {
+            if (navigator.onLine) {
+                window.location.href = '/';
+            }
+        }
+        
+        // Listen for online event
+        window.addEventListener('online', checkConnection);
+        
+        // Check connection periodically
+        setInterval(checkConnection, 5000);
+        
+        // Add some interactive effects
+        document.addEventListener('DOMContentLoaded', function() {
+            const icon = document.querySelector('.offline-icon');
+            
+            setInterval(() => {
+                icon.style.transform = icon.style.transform === 'rotate(180deg)' ? 'rotate(0deg)' : 'rotate(180deg)';
+            }, 3000);
+        });
+    </script>
+</body>
+</html>
+
